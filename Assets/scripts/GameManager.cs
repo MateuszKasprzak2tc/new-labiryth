@@ -8,9 +8,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] int timeToEnd;
     private int defaultTimeToEnd = 100;
     private bool gamePaused = false;
+    [SerializeField] int points = 0;
     bool endGame = false;
     bool win = false;
-    
+
+    [SerializeField] int redkeys = 0;
+    [SerializeField] int greenkeys = 0;
+    [SerializeField] int goldkeys = 0;
+
     void Start()
     {
         if (gameManager == null)
@@ -82,6 +87,41 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("You lose!!! Reload?");
+        }
+    }
+
+    public void AddPoints(int points)
+    {
+        Debug.Log("dodaje"+points);
+        
+        this.points += points;
+        Debug.Log(this.points);
+    }
+
+    public void AddTime(int timeToAdd)
+    {
+        timeToEnd += timeToAdd;
+    }
+
+    public void FreezeTime(float freezeTime)
+    {
+        CancelInvoke("TimerTick");
+        InvokeRepeating("TimerTick", freezeTime, 1);
+    }
+
+    public void AddKey(KeyColor color)
+    {
+        if (color == KeyColor.Gold)
+        {
+            goldkeys++;
+        }
+        else if (color == KeyColor.Red)
+        {
+            redkeys++;
+        }
+        else if (color == KeyColor.Green)
+        {
+            greenkeys++;
         }
     }
 }
