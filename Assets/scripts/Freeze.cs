@@ -9,6 +9,7 @@ public class Freeze : PickUp
     public override void Picked()
     {
         Debug.Log("Time will resume in" + frezzeTime);
+        GameManager.gameManager.PlayClip(sound);
         GameManager.gameManager.FreezeTime(frezzeTime);
         Destroy(this.gameObject);
     }

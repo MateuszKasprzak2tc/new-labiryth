@@ -11,6 +11,7 @@ public class Crystal : PickUp
     {
         Debug.Log("up");
         GameManager.gameManager.AddPoints(points);
+        GameManager.gameManager.PlayClip(sound);
         Destroy(this.gameObject);
         
     }

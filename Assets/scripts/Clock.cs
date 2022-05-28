@@ -8,6 +8,7 @@ public class Clock : PickUp
 
     public override void Picked()
     {
+        GameManager.gameManager.PlayClip(sound);
         Debug.Log("add " +addTime);
         GameManager.gameManager.AddTime(addTime);
         Destroy(this.gameObject);

@@ -11,11 +11,35 @@ public enum KeyColor
 public class Key : PickUp
 {
     [SerializeField] KeyColor color;
+    [SerializeField] Material red;
+    [SerializeField] Material green;
+    [SerializeField] Material gold;
+
+    private void Start()
+    {
+        SetMyColor();
+    }
 
     public override void Picked()
     {
         GameManager.gameManager.AddKey(color);
-
+        GameManager.gameManager.PlayClip(sound);
         Destroy(gameObject);
+    }
+
+    void SetMyColor()
+    {
+        switch(color)
+        {
+            case KeyColor.Red:
+                GetComponent<Renderer>().material = red;
+                break;
+            case KeyColor.Green:
+                GetComponent<Renderer>().material = green;
+                break;
+            case KeyColor.Gold:
+                GetComponent<Renderer>().material = gold;
+                break;
+        }
     }
 }
